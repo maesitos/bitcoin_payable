@@ -49,6 +49,15 @@ config/initializers/bitcoin_payable.rb
     BitcoinPayable.config.master_public_key = ENV["MASTER_PUBLIC_KEY"]
     BitcoinPayable.config.testnet = true
     BitcoinPayable.config.adapter = "blockchain_info"
+    
+    # The rate for Bitcoin you'll be using to calculate prices
+    # :last               The last market's price
+    # :high               Today's highest price
+    # :low                Today's highest price
+    # :daily_average      The daily average price
+    # :weekly_average     The weekly average price
+    # :monthly_average    The monthly average price
+    BitcoinPayable.config.rate_calculation = :last
 
 
 * In order to use the bitcoin network and issue real addresses, BitcoinPayable.config.testnet must be set to false *
