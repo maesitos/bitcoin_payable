@@ -51,6 +51,7 @@ config/initializers/bitcoin_payable.rb
     BitcoinPayable.config.adapter = "blockchain_info"
     
     # The rate for Bitcoin you'll be using to calculate prices
+    # This setting is optional and will be :daily_average by default
     # :last               The last market's price
     # :high               Today's highest price
     # :low                Today's highest price
