@@ -75,6 +75,7 @@ BitcoinPayable.config do |config|
   # Only available for blocktrail adapter
   config.allowwebhooks = true
   config.webhook_domain = "subdomain.domain.com:port"
+  config.webhook_protocol = "https" # Or 'http'
 end
 ```
 
