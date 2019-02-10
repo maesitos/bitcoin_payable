@@ -4,7 +4,7 @@ Support Bitcoin and Bitcoin Cash in your Ruby on Rails application!
 
 A rails gem that enables any model to have bitcoin payments.
 The polymorphic table bitcoin_payments creates payments with unique addresses based on a BIP32 deterministic seed using https://github.com/wink/money-tree
-and uses the (https://helloblock.io OR https://blockchain.info/) API to check for payments.
+and uses different API to check for payments.
 
 Payments have 5 states:  `pending`, `partial_payment`, `paid_in_full`, `confirmed`, `comped`
 
@@ -12,10 +12,9 @@ No private keys needed, No bitcoind blockchain indexing on new servers, just add
 
 Support for multiple fiat currencies: `USD` `EUR` `GBP` `AUD` `BRL` `CAD` `CZK` `IDR` `ILS` `JPY` `MXN` `MYR` `NZD` `PLN` `RUB` `SEK` `SGD` `TRY`
 
-Donations appreciated
-
-`142WJW4Zzc9iV7uFdbei8Unpe8WcLhUgmE`
-`bitcoincash:qqsnzsxsytmp45t6ndyaz5etj0x9vvacvqmphswqa8`
+## TODO
+* Implement Bitcoin SV
+* Find a reliable webhooks provider
 
 ## Rails 5.1
 
@@ -32,7 +31,7 @@ Master now supports multiple Rails versions.
 
 Add this line to your application's Gemfile:  (I might be too lazy to update RubyGems all the time)
 
-    gem 'bitcoin_payable', git: 'https://github.com/Sailias/bitcoin_payable', branch: 'master'
+    gem 'bitcoin_payable', git: 'https://github.com/maesitos/bitcoin_payable', branch: 'master'
 
 And then execute:
 
@@ -65,7 +64,7 @@ BitcoinPayable.config do |config|
   config.master_public_key = "your xpub master public key here"
 
   config.testnet = true
-  config.adapter = 'blocktrail' # Use blocktrail, blockchain_info or blockcypher
+  config.adapter = 'blocktrail' # Use blocktrail, blockchain_info, blockcypher or bitcoin_com
 
   # Confirmations (defaults to 6)
   config.confirmations = 6
@@ -92,6 +91,7 @@ end
 
     BitcoinPayable.config.testnet = false
 
+## Adapters
 #### Blocktrail Adapter
 
 If you use `config.adapter = 'blocktrail'` *(The only one supporting webhooks)* you'll need to set the following environment variables:
@@ -107,6 +107,18 @@ If you use `config.adapter = 'blocktrail'` *(The only one supporting webhooks)* 
 Please bear in mind [Blocktrail.com](http://blocktrail.com) was acquired by [Bitmain](http://bitmain.com) and the service has ben entirely moved to [BTC.com](http://btc.com).
 
 You can obtain your API keys at https://dev.btc.com
+
+#### Adapters status
+
+
+| Adapter         | Health        | Webhooks        | Coins Supported
+| -------------   |:-------------:| ----------:     | ---------------:|
+| Bitcoin.com     | Good          | No              | BCH
+| Blocktrail      | Dead          | Yes             | BCH and BTC
+| BTC.com         | Very Bad      | Deprecated      | BCH and BTC
+| Blockchyper     | Good          | Not implemented | BTC
+| Blockchain.info | Good          | No              | BTC
+
 
 #### Node Path
 
