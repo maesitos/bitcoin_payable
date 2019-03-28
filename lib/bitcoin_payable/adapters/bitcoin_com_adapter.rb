@@ -25,7 +25,7 @@ module BitcoinPayable::Adapters
           blockTime: nil,  # Not supported
           estimatedTxTime: nil, #Not supported
           estimatedTxValue: tx['satoshis'],
-          confirmations: tx['confirmation'] || 0
+          confirmations: tx['confirmations'] || 0
         }
       end
     end
